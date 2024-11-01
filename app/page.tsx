@@ -1,101 +1,116 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from 'react';
+
+type Quest = {
+  quest: string;
+  reward: string;
+};
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const quests: Quest[] = [
+    { quest: "Mutfaktaki en gizemli atistirmaligi bul ve ev sahibine sun.", reward: "Bir paket gorunmez cips." },
+    { quest: "Evde kaybolmus bir esyayi bulup ev sahibine getir.", reward: "Tuhaf ama anlamli gorunen bir dugme." },
+    { quest: "Bardaginizi doldurabileceginiz bir iksir bul ve getir.", reward: "Eski bir sisede buyu suyu (soda sisesi olabilir)." },
+    { quest: "Kedilerden biriyle dostluk kur ve onu mutlu et.", reward: "Hayali bir kedi fisildayici unvani." },
+    { quest: "Kopege sarilip onu mutlu et.", reward: "Kopek Psikologu rozeti." },
+    { quest: "Evdeki en gizemli atistirmaligi bul ve tadim yap.", reward: "Atistirmalik Avcisi madalyasi." },
+    { quest: "Bir sarki baslat ya da mevcut bir sarkiya eslik et.", reward: "Parti DJ'i unvani." },
+    { quest: "Bir kediyi izleyip onun pesinden git, ama cok korkutma.", reward: "Bir paket kedinin pesinden kosturma tuyosu." },
+    { quest: "Bir sise su al ve bunu buyulu bir iksir gibi sun.", reward: "Su buyucusu madalyasi." },
+    { quest: "Evde bir balkabagi dekoru bul.", reward: "Balkabagi seklinde hayali bir odul sertifikasi." },
+    { quest: "Sarkilardan birinde dans et.", reward: "Dans Yildizi kupasi." },
+    { quest: "Eglenceli bir selfie cek ve gostermek icin ev sahibine sun.", reward: "Parti Fotografcisi rozeti." },
+    { quest: "Kedilere yemek vermis mis gibi yap, ev sahibine bildir.", reward: "Iki tane yolunmus ordek." },
+    { quest: "Baskalarinin kostumlerini incelediginden emin ol.", reward: "Kostum Bekcisi icin tac." },
+    { quest: "Bir hayalet tahmini yap, misafirlerden birine sor.", reward: "Hayalet Kahin madalyonu." },
+    { quest: "Son icecegi bulup basarili bir sekilde al.", reward: "Sihirli Gorev Uguru." }
+  ];
+  
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const [currentQuest, setCurrentQuest] = useState<Quest | null>(null);
+  const [result, setResult] = useState<string | null>(null);
+
+  const getNextQuest = () => {
+    const randomQuest = quests[Math.floor(Math.random() * quests.length)];
+    setCurrentQuest(randomQuest);
+    setResult(null);
+  };
+
+  const handleSuccess = () => {
+    setResult(`Ödül: ${currentQuest?.reward}`);
+  };
+
+  const handleFailure = () => {
+    setResult("Gid gud!");
+  };
+
+  return (
+    <div style={styles.container}>
+      {!currentQuest ? (
+        <button onClick={getNextQuest} style={styles.exclamationButton}>
+          <span>❗ Tıkla ve yeni görevin karşında, maceracı!</span>
+        </button>
+      ) : (
+        <div style={styles.questContainer}>
+          <p style={styles.questText}>{currentQuest.quest}</p>
+          <div style={styles.buttonContainer}>
+            <button onClick={handleSuccess} style={styles.actionButton}>Başarılı</button>
+            <button onClick={handleFailure} style={styles.actionButton}>Başarısız</button>
+          </div>
+          {result && <p style={styles.resultText}>{result}</p>}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      )}
     </div>
   );
 }
+
+
+
+const styles = {
+  container: {
+    display: "flex" as "flex",
+    flexDirection: "column" as "column",
+    alignItems: "center" as "center",
+    justifyContent: "center" as "center",
+    minHeight: "100vh",
+    padding: "20px",
+    backgroundColor: "#333",
+    textAlign: "center" as "center",
+  },
+  exclamationButton: {
+    padding: '20px',
+    fontSize: '18px',
+    backgroundColor: '#ffcc00',
+    border: 'none',
+    borderRadius: '10px',
+    cursor: 'pointer',
+  },
+  questContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  questText: {
+    fontSize: '20px',
+    marginBottom: '20px',
+  },
+  buttonContainer: {
+    display: 'flex',
+    gap: '10px',
+    marginTop: '20px',
+  },
+  actionButton: {
+    padding: '10px 20px',
+    fontSize: '16px',
+    backgroundColor: '#7cfc00',
+    border: 'none',
+    borderRadius: '10px',
+    cursor: 'pointer',
+  },
+  resultText: {
+    fontSize: '18px',
+    marginTop: '20px',
+    fontStyle: 'italic',
+  },
+};
