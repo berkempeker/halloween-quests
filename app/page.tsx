@@ -77,7 +77,7 @@ export default function Home() {
       justifyContent: "center",
       minHeight: "100vh",
       padding: "20px",
-      backgroundColor: "#333",
+      backgroundColor: "#ffffff",
       textAlign: "center",
     },
     exclamationButton: {
