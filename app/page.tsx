@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import { CSSProperties } from 'react';
 
 type Quest = {
   quest: string;
@@ -67,25 +68,24 @@ export default function Home() {
 
 
 
-const styles = {
-  container: {
-    display: "flex" as "flex",
-    flexDirection: "column" as "column",
-    alignItems: "center" as "center",
-    justifyContent: "center" as "center",
-    minHeight: "100vh",
-    padding: "20px",
-    backgroundColor: "#333",
-    textAlign: "center" as "center",
-  },
-  exclamationButton: {
-    padding: '20px',
-    fontSize: '18px',
-    backgroundColor: '#ffcc00',
-    border: 'none',
-    borderRadius: '10px',
-    cursor: 'pointer',
-  },
+
+  const styles: { [key: string]: CSSProperties } = {
+    container: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      minHeight: "100vh",
+      padding: "20px",
+      backgroundColor: "#333",
+      textAlign: "center",
+    },
+    exclamationButton: {
+      fontSize: "24px",
+      padding: "10px 20px",
+      margin: "20px 0",
+      cursor: "pointer",
+    },
   questContainer: {
     display: 'flex',
     flexDirection: 'column',
