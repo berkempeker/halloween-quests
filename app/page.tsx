@@ -10,22 +10,22 @@ type Quest = {
 
 export default function Home() {
   const quests: Quest[] = [
-    { quest: "Mutfaktaki en gizemli atistirmaligi bul ve ev sahibine sun.", reward: "Bir paket gorunmez cips." },
-    { quest: "Evde kaybolmus bir esyayi bulup ev sahibine getir.", reward: "Tuhaf ama anlamli gorunen bir dugme." },
-    { quest: "Bardaginizi doldurabileceginiz bir iksir bul ve getir.", reward: "Eski bir sisede buyu suyu (soda sisesi olabilir)." },
-    { quest: "Kedilerden biriyle dostluk kur ve onu mutlu et.", reward: "Hayali bir kedi fisildayici unvani." },
-    { quest: "Kopege sarilip onu mutlu et.", reward: "Kopek Psikologu rozeti." },
-    { quest: "Evdeki en gizemli atistirmaligi bul ve tadim yap.", reward: "Atistirmalik Avcisi madalyasi." },
-    { quest: "Bir sarki baslat ya da mevcut bir sarkiya eslik et.", reward: "Parti DJ'i unvani." },
-    { quest: "Bir kediyi izleyip onun pesinden git, ama cok korkutma.", reward: "Bir paket kedinin pesinden kosturma tuyosu." },
-    { quest: "Bir sise su al ve bunu buyulu bir iksir gibi sun.", reward: "Su buyucusu madalyasi." },
-    { quest: "Evde bir balkabagi dekoru bul.", reward: "Balkabagi seklinde hayali bir odul sertifikasi." },
-    { quest: "Sarkilardan birinde dans et.", reward: "Dans Yildizi kupasi." },
-    { quest: "Eglenceli bir selfie cek ve gostermek icin ev sahibine sun.", reward: "Parti Fotografcisi rozeti." },
-    { quest: "Kedilere yemek vermis mis gibi yap, ev sahibine bildir.", reward: "Iki tane yolunmus ordek." },
-    { quest: "Baskalarinin kostumlerini incelediginden emin ol.", reward: "Kostum Bekcisi icin tac." },
-    { quest: "Bir hayalet tahmini yap, misafirlerden birine sor.", reward: "Hayalet Kahin madalyonu." },
-    { quest: "Son icecegi bulup basarili bir sekilde al.", reward: "Sihirli Gorev Uguru." }
+    { quest: "Mutfaktaki en gizemli atistirmaligi bul ve ev sahibine sun.", reward: "Bir paket gorunmez cips kazandin afiyet olsun" },
+    { quest: "Evde kaybolmus bir esyayi bulup ev sahibine getir.", reward: "Tuhaf ama anlamli gorunen bir dugme kazandin onu asla kaybetme." },
+    { quest: "Bardagini doldurabilecegin bir iksir bul ve getir.", reward: "Eski bir sisede buyu suyu." },
+    { quest: "Kedilerin en hirciniyla dostluk kur ve onu mutlu et.", reward: "Kedi fisildayici unvanini artik kullanabilirsin." },
+    { quest: "Kopege sarilip onu mutlu et.", reward: "Kopek Psikologu oldun, +5 animal love." },
+    { quest: "Evdeki en gizemli atistirmaligi bul ve tadim yap.", reward: "Atistirmalik Avcisi madalyasi kazandin." },
+    { quest: "Bir sarki soylemeye basla.", reward: "Parti DJ'i unvanini kullanabilirsin." },
+    { quest: "Kediyi izleyip onun pesinden git, ama cok korkutma.", reward: "Bundan sonra kedinin pesinden kosturma konusunda deneyimlisin." },
+    { quest: "Bir sise su al ve bunu buyulu bir iksir gibi sun.", reward: "Bir sonraki seneye kadar su bukucu ünvanini kullanabilirsin" },
+    { quest: "Evde bir halloween dekoru bul.", reward: "Balkabagi seklinde bir odul sertifikasi hayal et, hakettin." },
+    { quest: "Dans etmeye basla.", reward: "Kaf dagindaki Dans Yildizi kupasi artik senin " },
+    { quest: "Eglenceli bir selfie cek ve gostermek icin ev sahibine sun.", reward: "Parti Fotografcisi olarak anilabilirsin." },
+    { quest: "Kedilere yemek vermis gibi yap, ve ev sahibine bildir.", reward: "Iki tane yolunmus ordek kazandin, yumurtadan cikmalarini bekle." },
+    { quest: "Baskalarinin kostumlerini incelediginden emin ol.", reward: "Kostum Bekcisi icin tacin icin seneye ayni gün ayni saatte burada ol." },
+    { quest: "Bir hayaletin yerini göster, ve misafirlerden birini orada bir hayalet olduğuna ikna et.", reward: "Hayalet Kahini oldun artik hayaletlerle konuşabilirsin." },
+    { quest: "En iyi icecegi bulup gizlice al.", reward: "Icecek artik senin dikkatli iç." },
   ];
   
 
@@ -50,7 +50,7 @@ export default function Home() {
     <div style={styles.container}>
       {!currentQuest ? (
         <button onClick={getNextQuest} style={styles.exclamationButton}>
-          <span>❗ Tıkla ve yeni görevin karşında, maceracı!</span>
+          <span>❗ Görevi Kabul etmek için tikla!</span>
         </button>
       ) : (
         <div style={styles.questContainer}>
@@ -77,11 +77,11 @@ export default function Home() {
       justifyContent: "center",
       minHeight: "100vh",
       padding: "20px",
-      backgroundColor: "#ffffff",
+      backgroundColor: "#D2B48C", // light brown
       textAlign: "center",
     },
     exclamationButton: {
-      fontSize: "24px",
+      fontSize: "44px",
       padding: "10px 20px",
       margin: "20px 0",
       cursor: "pointer",
@@ -92,7 +92,7 @@ export default function Home() {
     alignItems: 'center',
   },
   questText: {
-    fontSize: '20px',
+    fontSize: '44px',
     marginBottom: '20px',
   },
   buttonContainer: {
@@ -103,14 +103,16 @@ export default function Home() {
   actionButton: {
     padding: '10px 20px',
     fontSize: '16px',
-    backgroundColor: '#7cfc00',
+    backgroundColor: '#FFD700', // gold
     border: 'none',
     borderRadius: '10px',
     cursor: 'pointer',
+    color: '#000000', // black
   },
   resultText: {
-    fontSize: '18px',
+    fontSize: '44px',
     marginTop: '20px',
     fontStyle: 'italic',
+    color: '#000000', // black
   },
 };
